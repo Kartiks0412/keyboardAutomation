@@ -144,6 +144,7 @@ void onSuggestionSelected(string &ip, const string &suggestion) {
     }
     ip += " ";
     dictionary.addWord(suggestion);
+    cout << "Current sentence: " << ip << endl;
 }
 
 int main() {
@@ -163,7 +164,7 @@ int main() {
             vector<string> suggestions = giveSuggestions(sentence);
             if (!suggestions.empty()) {
                 vector<string> words = split(sentence);
-                cout << "suggestions based on " << sentence << endl;
+                cout << "suggestions based on " << words.back() << endl;
                 for (auto &t : suggestions) {
                     cout << t << " ";
                 }
@@ -177,9 +178,8 @@ int main() {
                     cout << "out of range" << endl;
                     continue;
                 }
-                onSuggestionSelected(sentence, suggestions[i]);
-
                 cout << "Selected suggestion: " << suggestions[i] << endl;
+                onSuggestionSelected(sentence, suggestions[i]);
             } else {
                 cout << "No suggestions available." << endl;
             }
